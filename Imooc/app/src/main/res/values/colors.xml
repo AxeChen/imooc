@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#34394B</color>
+    <color name="colorPrimaryDark">#34394B</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="action_title">#FFFFFF</color>
+    <color name="liner_color">#D5DBD3</color>
+    <color name="homTabLight">#B7BBBF</color>
+    <color name="homTabSelectLight">#FF2D50</color>
+</resources>

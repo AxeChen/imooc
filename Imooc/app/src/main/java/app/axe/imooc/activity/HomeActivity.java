@@ -1,23 +1,18 @@
 package app.axe.imooc.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.SubMenu;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +26,7 @@ import app.axe.imooc.fragment.home.MineFragment;
 /**
  * 创建首页所有的Fragment
  */
-public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener,View.OnClickListener{
+public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
 
 
     private static final int MENU_SEARCH_ID = 0;
@@ -74,36 +69,36 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
         initAdapter();
     }
 
-    private void initView(){
+    private void initView() {
         mRlHome = (RelativeLayout) findViewById(R.id.home_rl_home);
         mIvHome = (ImageView) findViewById(R.id.home_iv_home);
         mTvHome = (TextView) findViewById(R.id.home_tv_home);
-        if(mRlHome!=null){
+        if (mRlHome != null) {
             mRlHome.setOnClickListener(this);
         }
         mRlMessage = (RelativeLayout) findViewById(R.id.home_rl_message);
         mIvMessage = (ImageView) findViewById(R.id.home_iv_message);
         mTvMessage = (TextView) findViewById(R.id.home_tv_message);
-        if(mRlMessage!=null){
+        if (mRlMessage != null) {
             mRlMessage.setOnClickListener(this);
         }
         mRlMe = (RelativeLayout) findViewById(R.id.home_rl_me);
         mIvMe = (ImageView) findViewById(R.id.home_iv_me);
         mTvMe = (TextView) findViewById(R.id.home_tv_me);
-        if(mRlMe!=null){
+        if (mRlMe != null) {
             mRlMe.setOnClickListener(this);
         }
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mViewPager = (ViewPager) findViewById(R.id.home_viewpager);
-        if(mViewPager!=null){
+        if (mViewPager != null) {
             mViewPager.addOnPageChangeListener(this);
         }
     }
 
-    private void initActionBar(){
+    private void initActionBar() {
         setSupportActionBar(mToolbar);
         mActionBar = getSupportActionBar();
-        if(mActionBar!=null){
+        if (mActionBar != null) {
             mActionBar.setDisplayShowTitleEnabled(true);
             mActionBar.setDisplayHomeAsUpEnabled(false);
             mActionBar.setDisplayShowHomeEnabled(false);
@@ -111,7 +106,7 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
         }
     }
 
-    private void initFragment(){
+    private void initFragment() {
         mFragments = new ArrayList<>();
         mHomeFragment = new HomeFragment();
         mMessageFragment = new MessageFragment();
@@ -121,16 +116,16 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
         mFragments.add(mMineFragment);
     }
 
-    private void initAdapter(){
-        mAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(),mFragments);
+    private void initAdapter() {
+        mAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(), mFragments);
         mViewPager.setAdapter(mAdapter);
     }
 
-    private void setActionBarTitle(int position){
-        if(mActionBar == null){
+    private void setActionBarTitle(int position) {
+        if (mActionBar == null) {
             return;
         }
-        switch (position){
+        switch (position) {
             case 0:
                 mActionBar.setTitle(getString(R.string.home_home));
                 selectHome();
@@ -149,7 +144,7 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
         }
     }
 
-    private void selectHome(){
+    private void selectHome() {
         mIvHome.setImageResource(R.drawable.subtitle_home);
         mIvMessage.setImageResource(R.drawable.subtitle_course_normal);
         mIvMe.setImageResource(R.drawable.subtitle_mine_normal);
@@ -158,7 +153,7 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
         mTvMe.setTextColor(getResources().getColor(R.color.homTabLight));
     }
 
-    private void selectMessage(){
+    private void selectMessage() {
         mIvMessage.setImageResource(R.drawable.subtitle_course);
         mIvHome.setImageResource(R.drawable.subtitle_home_normal);
         mIvMe.setImageResource(R.drawable.subtitle_mine_normal);
@@ -167,7 +162,7 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
         mTvMe.setTextColor(getResources().getColor(R.color.homTabLight));
     }
 
-    private void selectMe(){
+    private void selectMe() {
         mIvMe.setImageResource(R.drawable.subtitle_mine);
         mIvHome.setImageResource(R.drawable.subtitle_home_normal);
         mIvMessage.setImageResource(R.drawable.subtitle_course_normal);
@@ -178,15 +173,15 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0,MENU_SEARCH_ID,0,R.string.search).setIcon(R.drawable.ic_menu_search).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.add(0, MENU_SEARCH_ID, 0, R.string.search).setIcon(R.drawable.ic_menu_search).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case MENU_SEARCH_ID:
-                Toast.makeText(getApplicationContext(),"go to seach",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "go to seach", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -210,7 +205,7 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        switch (id){
+        switch (id) {
             case R.id.home_rl_home:
                 mViewPager.setCurrentItem(0);
                 selectHome();
@@ -227,4 +222,5 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
                 break;
         }
     }
+
 }

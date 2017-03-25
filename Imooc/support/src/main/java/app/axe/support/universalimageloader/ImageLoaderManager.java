@@ -72,7 +72,7 @@ public class ImageLoaderManager {
      */
     private DisplayImageOptions getDefaultOptions(){
         DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageForEmptyUri(R.drawable.)//图片地址为空的情况
+                .showImageForEmptyUri(R.drawable.ic_nodata_icon)//图片地址为空的情况
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)

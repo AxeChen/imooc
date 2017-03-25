@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CommonLoadView">
+        <attr name="showType" format="enum">
+            <enum name="only_progress" value="0"/>
+            <enum name="progress_and_horizontal_description" value="1"/>
+            <enum name="progress_and_vertical_description" value="2"/>
+        </attr>
+        <attr name="progressWidth" format="dimension"/>
+        <attr name="progressHeight" format="dimension"/>
+        <attr name="descriptionTextSize" format="dimension"/>
+        <attr name="descriptionTextColor" format="color"/>
+        <attr name="intervalSize" format="dimension"/>
+    </declare-styleable>
+</resources>

@@ -77,6 +77,7 @@ public class ImageLoaderManager {
                 .cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
+        return options;
     }
 
     /**

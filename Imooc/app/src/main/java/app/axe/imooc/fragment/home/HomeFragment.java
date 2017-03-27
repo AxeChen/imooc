@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import app.axe.imooc.R;
+import app.axe.imooc.adapter.home.HomeFragmentRecyclerViewAdapter;
 import app.axe.imooc.fragment.base.BaseFragment;
 
 /**
@@ -21,6 +22,7 @@ public class HomeFragment extends BaseFragment{
     private View mView;
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefresh;
+    private HomeFragmentRecyclerViewAdapter mAdapter;
 
     @Nullable
     @Override

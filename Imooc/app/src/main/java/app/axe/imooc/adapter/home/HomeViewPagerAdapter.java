@@ -28,4 +28,5 @@ public class HomeViewPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return fragments.size();
     }
+
 }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<app.axe.imooc.customui.CommonLoadView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<app.axe.imooc.customui.CommonLoadView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:showType="progress_and_vertical_description"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent"
+    app:descriptionTextSize="18sp"
+    app:showType="progress_and_vertical_description" />

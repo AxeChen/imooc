@@ -5,11 +5,6 @@
 
     <include layout="@layout/toolbar" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/home_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <LinearLayout
         android:id="@+id/home_bottom_tab"
         android:layout_width="match_parent"
@@ -40,8 +35,8 @@
                 android:layout_below="@+id/home_iv_home"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/homTabLight"
-                android:text="@string/home_home" />
+                android:text="@string/home_home"
+                android:textColor="@color/homTabLight" />
         </RelativeLayout>
 
 
@@ -65,8 +60,8 @@
                 android:layout_below="@+id/home_iv_message"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/homTabLight"
-                android:text="@string/home_message" />
+                android:text="@string/home_message"
+                android:textColor="@color/homTabLight" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -89,16 +84,24 @@
                 android:layout_below="@+id/home_iv_me"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/homTabLight"
-                android:text="@string/home_mine" />
+                android:text="@string/home_mine"
+                android:textColor="@color/homTabLight" />
         </RelativeLayout>
 
     </LinearLayout>
 
     <View
+        android:id="@+id/home_bottom_liner"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_above="@+id/home_bottom_tab"
         android:background="@color/liner_color" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/home_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/home_bottom_liner"
+        android:layout_below="@+id/toolbar" />
 
 </RelativeLayout>

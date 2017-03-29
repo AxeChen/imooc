@@ -130,8 +130,10 @@ public class CommonLoadView extends RelativeLayout{
         mHorizontalDescription.setTextSize(px2sp((int) descriptionTextSize));
         mVerticalDescription.setTextSize(px2sp((int) descriptionTextSize));
 
-        mHorizontalDescription.setTextColor(descriptionTextColor);
-        mVerticalDescription.setTextColor(descriptionTextColor);
+        if(descriptionTextColor !=null){
+            mHorizontalDescription.setTextColor(descriptionTextColor);
+            mVerticalDescription.setTextColor(descriptionTextColor);
+        }
 
         mHorizontalDescription.setPadding(intervalSize,0,0,0);
         mVerticalDescription.setPadding(0,intervalSize,0,0);

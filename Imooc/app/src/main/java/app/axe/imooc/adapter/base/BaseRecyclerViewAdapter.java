@@ -23,8 +23,8 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
 
 
     private List<Object> mItems;
-    private LayoutInflater mInflater;
-    private Context mContext;
+    protected LayoutInflater mInflater;
+    protected Context mContext;
 
     /**
      * 设置三个默认的view
@@ -52,11 +52,11 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType == VIEW_TYPE_FIRST_LOADING){
-            return new CommonViewHolder(mInflater.inflate(loadfirstview,parent));
+            return new CommonViewHolder(mInflater.inflate(R.layout.common_adapter_first_load_layout,parent,false));
         }else if(viewType == VIEW_TYPE_NEXT_LOADING){
-            return new CommonViewHolder(mInflater.inflate(loadnextview,parent));
+            return new CommonViewHolder(mInflater.inflate(R.layout.common_adapter_load_next_layout,parent,false));
         }else {
-            return new CommonViewHolder(mInflater.inflate(nodataview,parent));
+            return new CommonViewHolder(mInflater.inflate(R.layout.common_adapter_nodata_layout,parent,false));
         }
 
     }
@@ -68,7 +68,7 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return getItems().size();
     }
 
     /**

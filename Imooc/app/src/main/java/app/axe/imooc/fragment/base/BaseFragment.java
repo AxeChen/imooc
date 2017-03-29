@@ -1,9 +1,9 @@
 package app.axe.imooc.fragment.base;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by Administrator on 2017/3/22 0022.
@@ -12,7 +12,7 @@ import android.support.v4.app.Fragment;
 
 public class BaseFragment extends Fragment {
 
-    protected Activity mActivity;
+    protected AppCompatActivity mActivity;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

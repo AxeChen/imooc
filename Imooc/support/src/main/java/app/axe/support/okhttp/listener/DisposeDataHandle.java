@@ -8,14 +8,8 @@ package app.axe.support.okhttp.listener;
 public class DisposeDataHandle {
 
     public DisposeDataListener mListener;
-    public Class<?> mClass = null;
 
     public DisposeDataHandle(DisposeDataListener mListener) {
         this.mListener = mListener;
-    }
-
-    public DisposeDataHandle(DisposeDataListener mListener, Class<?> mClass) {
-        this.mListener = mListener;
-        this.mClass = mClass;
     }
 }

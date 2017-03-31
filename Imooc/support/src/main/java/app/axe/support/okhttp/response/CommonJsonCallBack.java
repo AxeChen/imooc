@@ -15,7 +15,7 @@ import okhttp3.Response;
 
 /**
  * Created by Administrator on 2017/3/24.
- * 专门处理JSON的回调响应
+ * 专门处理JSON的回调响应,先将Json字符串返回给应用，由应用那边做解析。（这边可能有点问题，但是要将业务和公用的代码分离）
  */
 
 public class CommonJsonCallBack implements Callback {
@@ -41,11 +41,9 @@ public class CommonJsonCallBack implements Callback {
      */
     private Handler mDeliveryHandler;
     private DisposeDataListener mListener;
-    private Class<?> mClass;
 
-    public CommonJsonCallBack(DisposeDataListener mListener, Class<?> mClass) {
+    public CommonJsonCallBack(DisposeDataListener mListener) {
         this.mListener = mListener;
-        this.mClass = mClass;
         this.mDeliveryHandler = new Handler(Looper.getMainLooper());
     }
 
@@ -55,7 +53,7 @@ public class CommonJsonCallBack implements Callback {
         mDeliveryHandler.post(new Runnable() {
             @Override
             public void run() {
-                mListener.onFailure(new OkHttpException(NETWORK_ERROR,e));
+                mListener.onFailure(new OkHttpException(NETWORK_ERROR, e));
             }
         });
     }
@@ -72,34 +70,20 @@ public class CommonJsonCallBack implements Callback {
         });
     }
 
-    private void handleResponse(Object responseObj){
-        if(responseObj == null || responseObj.toString().trim().length() == 0){
-            mListener.onFailure(new OkHttpException(NETWORK_ERROR,EMPTY_MSG));
+    /**
+     * 返回一个jsonObject，由应用端封装解析的方法
+     * @param responseObj
+     */
+    private void handleResponse(Object responseObj) {
+        if (responseObj == null || responseObj.toString().trim().length() == 0) {
+            mListener.onFailure(new OkHttpException(NETWORK_ERROR, EMPTY_MSG));
             return;
         }
-        try{
+        try {
             JSONObject result = new JSONObject(responseObj.toString());
-            if(result.has(RESULT_CODE)){
-                //从Json对象中取出响应码，如果是0则是正确的响应
-                if(result.getInt(RESULT_CODE) == RESULT_CODE_VALUE){
-                    if(mClass == null){
-                        mListener.onSuccess(responseObj);
-                    }else{
-                        //将对象转化为对象
-                        Object obj = new Object();
-                        if(obj!=null){
-                            mListener.onSuccess(obj);
-                        }else{
-                            mListener.onFailure(new OkHttpException(JSON_ERROR,EMPTY_MSG));
-                        }
-                    }
-                }else{
-                    //将服务器返回给我们的异常回调到应用去处理
-                    mListener.onFailure(new OkHttpException(OTHER_ERROR,result.get(RESULT_CODE)));
-                }
-            }
-        }catch (Exception e){
-            mListener.onFailure(new OkHttpException(OTHER_ERROR,e.getMessage()));
+            mListener.onSuccess(result);
+        } catch (Exception e) {
+            mListener.onFailure(new OkHttpException(OTHER_ERROR, e.getMessage()));
         }
 
     }

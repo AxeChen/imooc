@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import app.axe.imooc.R;
 import app.axe.imooc.adapter.base.BaseRecyclerViewAdapter;
-import app.axe.imooc.bean.TrendingBean;
+import app.axe.imooc.module.TrendingBean;
 
 /**
  * Created by Administrator on 2017/3/25.

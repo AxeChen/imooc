@@ -6,9 +6,9 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 import app.axe.support.okhttp.https.HttpsUtils;
+import app.axe.support.okhttp.listener.DisposeDataListener;
 import app.axe.support.okhttp.response.CommonJsonCallBack;
 import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
@@ -51,12 +51,12 @@ public class CommonOkHttpClient {
     /**
      * 发送具体的http/https请求
      * @param request
-     * @param commCallBack
+     * @param DisposeDataHandle
      * @return
      */
-    public static Call sendRequest(Request request, CommonJsonCallBack commCallBack){
+    public static Call get(Request request, DisposeDataListener handle) {
         Call call = mOkHttpClient.newCall(request);
-        call.enqueue(commCallBack);
+        call.enqueue(new CommonJsonCallBack(handle));
         return call;
     }
 

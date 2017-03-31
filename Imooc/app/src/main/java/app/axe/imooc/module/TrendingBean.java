@@ -1,7 +1,7 @@
-package app.axe.imooc.bean;
+package app.axe.imooc.module;
 
 /**
- * Created by Administrator on 2017/3/28.
+ * Created by Chen on 2017/3/28.
  */
 
 public class TrendingBean {

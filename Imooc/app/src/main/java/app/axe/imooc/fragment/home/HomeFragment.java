@@ -15,8 +15,11 @@ import java.util.List;
 
 import app.axe.imooc.R;
 import app.axe.imooc.adapter.home.HomeFragmentRecyclerViewAdapter;
-import app.axe.imooc.bean.TrendingBean;
+import app.axe.imooc.module.TrendingBean;
 import app.axe.imooc.fragment.base.BaseFragment;
+import app.axe.imooc.module.recommend.BaseRecommandModel;
+import app.axe.imooc.network.UrlsContants;
+import app.axe.imooc.network.home.HomeRequestUtils;
 
 /**
  * Created by Administrator on 2017/3/22 0022.
@@ -33,6 +36,8 @@ public class HomeFragment extends BaseFragment {
 
     private List<Object> trendings;
 
+    private BaseRecommandModel mRecommandModel;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,7 +51,7 @@ public class HomeFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         mActivity = (AppCompatActivity) getActivity();
         mLinerManager = new LinearLayoutManager(mActivity);
-        loadingData();
+        loadData();
         setAdapter();
     }
 
@@ -56,12 +61,13 @@ public class HomeFragment extends BaseFragment {
         initSwipeView();
     }
 
-    private void initSwipeView(){
+    private void initSwipeView() {
         mSwipeRefresh.setColorSchemeResources(R.color.homTabSelectLight);
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                loadData();
+                mSwipeRefresh.setRefreshing(false);
             }
         });
     }
@@ -70,18 +76,33 @@ public class HomeFragment extends BaseFragment {
         trendings = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             TrendingBean bean = new TrendingBean();
-            bean.setTitle("title"+i);
+            bean.setTitle("title" + i);
             trendings.add(bean);
         }
     }
 
-    private void setAdapter(){
+    private void setAdapter() {
         mAdapter = new HomeFragmentRecyclerViewAdapter(mActivity);
         mRecyclerView.setLayoutManager(mLinerManager);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.addItems(trendings);
     }
 
+    private void loadData() {
+        HomeRequestUtils.getTrending(UrlsContants.TRENDING, null, new HomeRequestUtils.HomeRequestListener() {
+            @Override
+            public void getRecommendModel(BaseRecommandModel recommandModel) {
+                //展示数据
+                if (recommandModel != null) {
+                    mRecommandModel = recommandModel;
+                }
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
+    }
 
 
 }

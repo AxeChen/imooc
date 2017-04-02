@@ -21,18 +21,28 @@ import app.axe.support.R;
 
 public class ImageLoaderManager {
 
-    /**线程数量**/
+    /**
+     * 线程数量
+     **/
     private static final int THREAD_COUNT = 4;
-    /**优先级**/
+    /**
+     * 优先级
+     **/
     private static final int PRIORITY = 2;
-    /**物理最大缓存**/
-    private static final int DISK_CACHE_size = 50*1024*1024;
-    /**连接超时**/
-    private static final int CONNECTION_TIME_OUT = 5*1000;
-    /**读取超时**/
-    private static final int READ_TIME_OUT = 30*1000;
+    /**
+     * 物理最大缓存
+     **/
+    private static final int DISK_CACHE_size = 50 * 1024 * 1024;
+    /**
+     * 连接超时
+     **/
+    private static final int CONNECTION_TIME_OUT = 5 * 1000;
+    /**
+     * 读取超时
+     **/
+    private static final int READ_TIME_OUT = 30 * 1000;
 
-    public static ImageLoader imageLoader;
+    public ImageLoader imageLoader;
 
     /**
      * 单例模式
@@ -40,9 +50,9 @@ public class ImageLoaderManager {
     private static ImageLoaderManager imageLoaderManager;
 
     public static ImageLoaderManager getInstance(Context context) {
-        if(imageLoaderManager == null){
-            synchronized (ImageLoaderManager.class){
-                if(imageLoaderManager == null){
+        if (imageLoaderManager == null) {
+            synchronized (ImageLoaderManager.class) {
+                if (imageLoaderManager == null) {
                     imageLoaderManager = new ImageLoaderManager(context);
                 }
             }
@@ -50,7 +60,7 @@ public class ImageLoaderManager {
         return imageLoaderManager;
     }
 
-    private ImageLoaderManager(Context context){
+    private ImageLoaderManager(Context context) {
         ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(context)
                 .threadPoolSize(THREAD_COUNT)//最大线程池
                 .threadPriority(Thread.NORM_PRIORITY - PRIORITY)
@@ -60,7 +70,7 @@ public class ImageLoaderManager {
                 .diskCacheFileNameGenerator(new Md5FileNameGenerator())
                 .tasksProcessingOrder(QueueProcessingType.FIFO)
                 .defaultDisplayImageOptions(getDefaultOptions())
-                .imageDownloader(new BaseImageDownloader(context,CONNECTION_TIME_OUT,READ_TIME_OUT))
+                .imageDownloader(new BaseImageDownloader(context, CONNECTION_TIME_OUT, READ_TIME_OUT))
                 .build();
         ImageLoader.getInstance().init(configuration);
         imageLoader = ImageLoader.getInstance();
@@ -68,9 +78,10 @@ public class ImageLoaderManager {
 
     /**
      * 创建DisplayImageOptions
+     *
      * @return
      */
-    private DisplayImageOptions getDefaultOptions(){
+    private DisplayImageOptions getDefaultOptions() {
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .showImageForEmptyUri(R.drawable.ic_nodata_icon)//图片地址为空的情况
                 .cacheInMemory(true)
@@ -82,29 +93,30 @@ public class ImageLoaderManager {
 
     /**
      * 展示圖片的方法
+     *
      * @param imageView
      * @param url
      * @param options
      * @param loadingListener
      */
-    public void displayImage(ImageView imageView, String url, DisplayImageOptions options, ImageLoadingListener loadingListener){
+    public void displayImage(ImageView imageView, String url, DisplayImageOptions options, ImageLoadingListener loadingListener) {
 
-        if(imageLoader != null){
-            imageLoader.displayImage(url,imageView,options,loadingListener);
+        if (imageLoader != null) {
+            imageLoader.displayImage(url, imageView, options, loadingListener);
         }
     }
 
-    public void displayImage(ImageView imageView, String url, ImageLoadingListener loadingListener){
+    public void displayImage(ImageView imageView, String url, ImageLoadingListener loadingListener) {
 
-        if(imageLoader != null){
-            imageLoader.displayImage(url,imageView,null,loadingListener);
+        if (imageLoader != null) {
+            imageLoader.displayImage(url, imageView, null, loadingListener);
         }
     }
 
-    public void displayImage(ImageView imageView, String url){
+    public void displayImage(ImageView imageView, String url) {
 
-        if(imageLoader != null){
-            imageLoader.displayImage(url,imageView,null,null);
+        if (imageLoader != null) {
+            imageLoader.displayImage(url, imageView, null, null);
         }
     }
 }

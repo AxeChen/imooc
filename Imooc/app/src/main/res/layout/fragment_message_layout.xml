@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <app.axe.imooc.customui.HomeMultiImagesView
+    <app.axe.imooc.customui.MultiImagesView
         android:id="@+id/message_fragment_multi_images"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

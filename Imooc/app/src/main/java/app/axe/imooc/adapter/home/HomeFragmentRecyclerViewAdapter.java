@@ -1,6 +1,7 @@
 package app.axe.imooc.adapter.home;
 
 import android.content.Context;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,9 @@ import java.util.List;
 
 import app.axe.imooc.R;
 import app.axe.imooc.adapter.base.BaseRecyclerViewAdapter;
-import app.axe.imooc.customui.HomeMultiImagesView;
+import app.axe.imooc.customui.MultiImagesView;
 import app.axe.imooc.module.recommend.RecommandBodyValue;
+import app.axe.imooc.utils.RecommendModuleUtils;
 import app.axe.support.universalimageloader.ImageLoaderManager;
 
 /**
@@ -26,7 +28,7 @@ public class HomeFragmentRecyclerViewAdapter extends BaseRecyclerViewAdapter {
     private static final int VIEW_TYPE_VIDOE_TYPE = 3;
     private static final int VIEW_TYPE_MULTI_PIC = 4;
     private static final int VIEW_TYPE_SINGLE_PIC = 5;
-    private static final int CARD_VIEW_PAGER = 6;
+    private static final int VIEW_TYPE_PAGER = 6;
 
     private ImageLoaderManager mImageLoadermanger;
 
@@ -41,6 +43,8 @@ public class HomeFragmentRecyclerViewAdapter extends BaseRecyclerViewAdapter {
             return new HomeContentPicItemViewHolder(mInflater.inflate(R.layout.home_item_single_imagae_layout, parent, false));
         } else if (viewType == VIEW_TYPE_MULTI_PIC) {
             return new HomeContentMultiImagesItemViewHolder(mInflater.inflate(R.layout.home_item_multi_image_layout, parent, false));
+        } else if (viewType == VIEW_TYPE_PAGER) {
+            return new HomeContentViewPagerViewHolder(mInflater.inflate(R.layout.home_item_viewpager_layout, parent, false));
         }
         return super.onCreateViewHolder(parent, viewType);
     }
@@ -52,6 +56,8 @@ public class HomeFragmentRecyclerViewAdapter extends BaseRecyclerViewAdapter {
             bindTrendItemView((HomeContentPicItemViewHolder) holder, position);
         } else if (getItemViewType(position) == VIEW_TYPE_MULTI_PIC) {
             bindMultiImagesViewHolder((HomeContentMultiImagesItemViewHolder) holder, position);
+        } else if (getItemViewType(position) == VIEW_TYPE_PAGER) {
+            bindViewPagerViewHolder((HomeContentViewPagerViewHolder) holder, position);
         }
     }
 
@@ -68,7 +74,7 @@ public class HomeFragmentRecyclerViewAdapter extends BaseRecyclerViewAdapter {
                 case 2:
                     return VIEW_TYPE_SINGLE_PIC;
                 case 3:
-                    return CARD_VIEW_PAGER;
+                    return VIEW_TYPE_PAGER;
             }
         }
         return super.getItemViewType(position);
@@ -100,6 +106,14 @@ public class HomeFragmentRecyclerViewAdapter extends BaseRecyclerViewAdapter {
         holder.text.setText(bean.getText());
     }
 
+    private void bindViewPagerViewHolder(HomeContentViewPagerViewHolder holder, int position) {
+        RecommandBodyValue bean = (RecommandBodyValue) getItems().get(position);
+        ArrayList<RecommandBodyValue> recommandBodyValues = RecommendModuleUtils.handleData(bean);
+        holder.mViewPager.setAdapter(new HomeItemViewPagerAdapter(mContext, recommandBodyValues));
+        holder.mViewPager.setPageMargin((int) mContext.getResources().getDimension(R.dimen.fab_margin));
+        holder.mViewPager.setCurrentItem(recommandBodyValues.size()*100);
+    }
+
     private class HomeContentPicItemViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView logo;
@@ -126,7 +140,7 @@ public class HomeFragmentRecyclerViewAdapter extends BaseRecyclerViewAdapter {
 
         public ImageView logo;
         public TextView title;
-        public HomeMultiImagesView contentImage;
+        public MultiImagesView contentImage;
         public TextView from;
         public TextView zan;
         public ImageView ivzan;
@@ -136,11 +150,21 @@ public class HomeFragmentRecyclerViewAdapter extends BaseRecyclerViewAdapter {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.home_item_content_tv_title);
             logo = (ImageView) itemView.findViewById(R.id.home_item_content_iv_logo);
-            contentImage = (HomeMultiImagesView) itemView.findViewById(R.id.home_item_multi_images);
+            contentImage = (MultiImagesView) itemView.findViewById(R.id.home_item_multi_images);
             from = (TextView) itemView.findViewById(R.id.home_item_content_from);
             zan = (TextView) itemView.findViewById(R.id.home_item_content_tv_zan);
             ivzan = (ImageView) itemView.findViewById(R.id.home_item_content_iv_zan);
             text = (TextView) itemView.findViewById(R.id.home_item_content_text);
+        }
+    }
+
+    private class HomeContentViewPagerViewHolder extends RecyclerView.ViewHolder {
+
+        private ViewPager mViewPager;
+
+        public HomeContentViewPagerViewHolder(View itemView) {
+            super(itemView);
+            mViewPager = (ViewPager) itemView.findViewById(R.id.home_item_viewpager);
         }
     }
 

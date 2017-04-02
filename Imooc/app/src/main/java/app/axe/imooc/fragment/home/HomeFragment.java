@@ -60,6 +60,25 @@ public class HomeFragment extends BaseFragment {
         initSwipeView();
     }
 
+    private void initScrollView(){
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                    mImageLoaderManager.imageLoader.pause();
+                }else{
+                    mImageLoaderManager.imageLoader.resume();
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+    }
+
     private void initSwipeView() {
         mSwipeRefresh.setColorSchemeResources(R.color.homTabSelectLight);
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

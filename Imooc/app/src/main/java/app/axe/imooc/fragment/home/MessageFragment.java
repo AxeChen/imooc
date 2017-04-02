@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.axe.imooc.R;
-import app.axe.imooc.customui.HomeMultiImagesView;
+import app.axe.imooc.customui.MultiImagesView;
 import app.axe.imooc.fragment.base.BaseFragment;
 
 /**
@@ -21,7 +21,7 @@ import app.axe.imooc.fragment.base.BaseFragment;
 public class MessageFragment extends BaseFragment {
 
     private View mView;
-    private HomeMultiImagesView homeMultiImagesView;
+    private MultiImagesView multiImagesView;
     private List<String> images;
 
     private RelativeLayout mTest;
@@ -31,7 +31,7 @@ public class MessageFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_message_layout, container, false);
-        homeMultiImagesView = (HomeMultiImagesView) mView.findViewById(R.id.message_fragment_multi_images);
+        multiImagesView = (MultiImagesView) mView.findViewById(R.id.message_fragment_multi_images);
         return mView;
     }
 
@@ -39,7 +39,7 @@ public class MessageFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initImages();
-        homeMultiImagesView.setImages(images);
+//        multiImagesView.setImages(images);
     }
 
     private void initImages() {

@@ -18,7 +18,7 @@ import app.axe.support.universalimageloader.ImageLoaderManager;
  * 当item的图片超过一张时的展示规则
  */
 
-public class HomeMultiImagesView extends RelativeLayout {
+public class MultiImagesView extends RelativeLayout {
 
     /**
      * 默认每行显示多少个
@@ -27,7 +27,7 @@ public class HomeMultiImagesView extends RelativeLayout {
     /**
      * 当measure的模式为AT_MOST时默认的图片大小
      **/
-    private static final int DEFAULT_IMAGE_WIDHT = 300;
+    private static final int DEFAULT_IMAGE_WIDHT = 200;
     /**
      * 每张图片的大小
      **/
@@ -54,15 +54,15 @@ public class HomeMultiImagesView extends RelativeLayout {
 
     int mMagin = 0;
 
-    public HomeMultiImagesView(Context context) {
+    public MultiImagesView(Context context) {
         this(context, null);
     }
 
-    public HomeMultiImagesView(Context context, @Nullable AttributeSet attrs) {
+    public MultiImagesView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public HomeMultiImagesView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public MultiImagesView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context.getApplicationContext();
         imageLoaderManager = ImageLoaderManager.getInstance(mContext);

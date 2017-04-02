@@ -51,14 +51,16 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == VIEW_TYPE_FIRST_LOADING){
-            return new CommonViewHolder(mInflater.inflate(R.layout.common_adapter_first_load_layout,parent,false));
+        if(viewType == VIEW_TYPE_NODATA){
+            return new CommonViewHolder(mInflater.inflate(nodataview,parent,false));
         }else if(viewType == VIEW_TYPE_NEXT_LOADING){
-            return new CommonViewHolder(mInflater.inflate(R.layout.common_adapter_load_next_layout,parent,false));
+            return new CommonViewHolder(mInflater.inflate(loadnextview,parent,false));
+        }else if(viewType == VIEW_TYPE_FIRST_LOADING){
+            return new CommonViewHolder(mInflater.inflate(loadfirstview,parent,false));
         }else {
-            return new CommonViewHolder(mInflater.inflate(R.layout.common_adapter_nodata_layout,parent,false));
+            return new RecyclerView.ViewHolder(new View(mContext)) {
+            };
         }
-
     }
 
     @Override

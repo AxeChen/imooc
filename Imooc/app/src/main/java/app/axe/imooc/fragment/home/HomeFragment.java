@@ -10,16 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import app.axe.imooc.R;
 import app.axe.imooc.adapter.home.HomeFragmentRecyclerViewAdapter;
-import app.axe.imooc.module.TrendingBean;
 import app.axe.imooc.fragment.base.BaseFragment;
 import app.axe.imooc.module.recommend.BaseRecommandModel;
 import app.axe.imooc.network.UrlsContants;
 import app.axe.imooc.network.home.HomeRequestUtils;
+import app.axe.support.universalimageloader.ImageLoaderManager;
 
 /**
  * Created by Administrator on 2017/3/22 0022.
@@ -34,9 +31,8 @@ public class HomeFragment extends BaseFragment {
     private HomeFragmentRecyclerViewAdapter mAdapter;
     private LinearLayoutManager mLinerManager;
 
-    private List<Object> trendings;
-
     private BaseRecommandModel mRecommandModel;
+    private ImageLoaderManager mImageLoaderManager;
 
     @Nullable
     @Override
@@ -51,8 +47,11 @@ public class HomeFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         mActivity = (AppCompatActivity) getActivity();
         mLinerManager = new LinearLayoutManager(mActivity);
-        loadData();
+        mImageLoaderManager = ImageLoaderManager.getInstance(getContext().getApplicationContext());
         setAdapter();
+        mAdapter.addLoadFrist();
+        loadData();
+
     }
 
     private void initView() {
@@ -72,29 +71,22 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
-    private void loadingData() {
-        trendings = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            TrendingBean bean = new TrendingBean();
-            bean.setTitle("title" + i);
-            trendings.add(bean);
-        }
-    }
-
     private void setAdapter() {
-        mAdapter = new HomeFragmentRecyclerViewAdapter(mActivity);
+        mAdapter = new HomeFragmentRecyclerViewAdapter(mActivity, mImageLoaderManager);
         mRecyclerView.setLayoutManager(mLinerManager);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     private void loadData() {
         HomeRequestUtils.getTrending(UrlsContants.TRENDING, null, new HomeRequestUtils.HomeRequestListener() {
-            @Override
             public void getRecommendModel(BaseRecommandModel recommandModel) {
                 //展示数据
                 if (recommandModel != null) {
                     mRecommandModel = recommandModel;
                 }
+                mAdapter.removeLoadFrist();
+                mAdapter.addRecommandList(mRecommandModel.data.getList());
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override

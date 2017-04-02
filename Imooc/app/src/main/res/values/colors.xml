@@ -8,4 +8,7 @@
     <color name="homTabLight">#B7BBBF</color>
     <color name="homTabSelectLight">#FF2D50</color>
     <color name="black_000000">#000000</color>
+    <color name="title_color">#2B333B</color>
+    <color name="space_liner">#F3F5F7</color>
+    <color name="text_color">#2B333B</color>
 </resources>

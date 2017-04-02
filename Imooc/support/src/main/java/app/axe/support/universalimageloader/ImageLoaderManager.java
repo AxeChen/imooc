@@ -32,14 +32,14 @@ public class ImageLoaderManager {
     /**读取超时**/
     private static final int READ_TIME_OUT = 30*1000;
 
-    private static ImageLoader imageLoader;
+    public static ImageLoader imageLoader;
 
     /**
      * 单例模式
      */
     private static ImageLoaderManager imageLoaderManager;
 
-    private static ImageLoaderManager ImageLoaderManager(Context context) {
+    public static ImageLoaderManager getInstance(Context context) {
         if(imageLoaderManager == null){
             synchronized (ImageLoaderManager.class){
                 if(imageLoaderManager == null){

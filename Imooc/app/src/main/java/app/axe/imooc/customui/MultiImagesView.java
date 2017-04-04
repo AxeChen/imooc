@@ -1,6 +1,7 @@
 package app.axe.imooc.customui;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.axe.imooc.R;
 import app.axe.support.universalimageloader.ImageLoaderManager;
 
 /**
@@ -24,6 +26,8 @@ public class MultiImagesView extends RelativeLayout {
      * 默认每行显示多少个
      **/
     private static final int LINE_COUNT = 3;
+
+    private static final int IMAGE_MAGIN = 3;
     /**
      * 当measure的模式为AT_MOST时默认的图片大小
      **/
@@ -53,6 +57,7 @@ public class MultiImagesView extends RelativeLayout {
     private ImageLoaderManager imageLoaderManager;
 
     int mMagin = 0;
+    int lineCount = 0;
 
     public MultiImagesView(Context context) {
         this(context, null);
@@ -65,8 +70,16 @@ public class MultiImagesView extends RelativeLayout {
     public MultiImagesView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context.getApplicationContext();
+        getAttrs(attrs);
         imageLoaderManager = ImageLoaderManager.getInstance(mContext);
-        mMagin = dp2px(3);
+    }
+
+    protected void getAttrs(AttributeSet attrs) {
+        TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.MultiImagesView);
+        lineCount = ta.getInt(R.styleable.MultiImagesView_lineCount, LINE_COUNT);
+        mMagin = (int) ta.getDimension(R.styleable.MultiImagesView_imageMagin, IMAGE_MAGIN);
+        mMagin = dp2px(mMagin);
+        ta.recycle();
     }
 
     //dp px
@@ -85,13 +98,13 @@ public class MultiImagesView extends RelativeLayout {
             //当测量模式是exactly，直接可以获取值
             viewWidth = widthSize;
             //三种绘制模式下的宽度
-            imageWidth = (viewWidth - (LINE_COUNT-1) * mMagin) / LINE_COUNT;
+            imageWidth = (viewWidth - (lineCount - 1) * mMagin) / lineCount;
         } else if (widthMode == MeasureSpec.AT_MOST) {
             //父容器的大小无法确定，由子容器的大小决定。所以子容器必须给一个默认的大小。
             imageWidth = DEFAULT_IMAGE_WIDHT;
             if (images.size() == 0) {
                 viewWidth = 0;
-            } else if (images.size() > LINE_COUNT) {
+            } else if (images.size() > lineCount) {
                 for (int i = 0; i < images.size(); i++) {
                     if (i == 0) {
                         viewWidth += imageWidth;
@@ -99,16 +112,16 @@ public class MultiImagesView extends RelativeLayout {
                         viewWidth += imageWidth + mMagin;
                     }
                 }
-            } else if (images.size() >= LINE_COUNT) {
-                viewWidth = LINE_COUNT * imageWidth + mMagin * (LINE_COUNT - 1);
+            } else if (images.size() >= lineCount) {
+                viewWidth = lineCount * imageWidth + mMagin * (lineCount - 1);
             }
         }
 
         for (int i = 0; i < childCount; i++) {
             if (i == 0 && childCount != 0) {
-                viewHeight = imageWidth+getPaddingTop();
+                viewHeight = imageWidth + getPaddingTop();
             }
-            if (i != 0 && i % LINE_COUNT == 0) {
+            if (i != 0 && i % lineCount == 0) {
                 viewHeight = viewHeight + (mMagin + imageWidth);
             }
         }
@@ -127,17 +140,17 @@ public class MultiImagesView extends RelativeLayout {
         for (int i = 0; i < childCount; i++) {
             //换行的时候，top和bottom要增加
             View view = getChildAt(i);
-            if (i != 0 && i % LINE_COUNT == 0) {
+            if (i != 0 && i % lineCount == 0) {
                 line++;
             }
-            if (i % LINE_COUNT == 0) {
-                left = i % LINE_COUNT * imageWidth;
+            if (i % lineCount == 0) {
+                left = i % lineCount * imageWidth;
             } else {
-                left = i % LINE_COUNT * imageWidth + (i % LINE_COUNT) * mMagin;
+                left = i % lineCount * imageWidth + (i % lineCount) * mMagin;
             }
             top = imageWidth * line + line * mMagin;
-            right = left+imageWidth;
-            bottom = top+imageWidth;
+            right = left + imageWidth;
+            bottom = top + imageWidth;
             view.layout(left, top, right, bottom);
         }
     }

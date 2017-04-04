@@ -14,12 +14,13 @@ import app.axe.imooc.R;
 import app.axe.imooc.adapter.home.HomeFragmentRecyclerViewAdapter;
 import app.axe.imooc.fragment.base.BaseFragment;
 import app.axe.imooc.module.recommend.BaseRecommandModel;
+import app.axe.imooc.module.recommend.RecommandHeadValue;
 import app.axe.imooc.network.UrlsContants;
 import app.axe.imooc.network.home.HomeRequestUtils;
 import app.axe.support.universalimageloader.ImageLoaderManager;
 
 /**
- * Created by Administrator on 2017/3/22 0022.
+ * Created by Chen on 2017/3/22 0022.
  * Show Trending list.
  */
 
@@ -57,6 +58,7 @@ public class HomeFragment extends BaseFragment {
     private void initView() {
         mRecyclerView = (RecyclerView) mView.findViewById(R.id.home_fragment_recyclerview);
         mSwipeRefresh = (SwipeRefreshLayout) mView.findViewById(R.id.home_fragment_swiperefreshlayout);
+        initScrollView();
         initSwipeView();
     }
 
@@ -71,7 +73,6 @@ public class HomeFragment extends BaseFragment {
                     mImageLoaderManager.imageLoader.resume();
                 }
             }
-
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -96,6 +97,11 @@ public class HomeFragment extends BaseFragment {
         mRecyclerView.setAdapter(mAdapter);
     }
 
+    private void addAutoViewPager(){
+        RecommandHeadValue headValue = mRecommandModel.data.getHead();
+        mAdapter.addHeadView(headValue);
+    }
+
     private void loadData() {
         HomeRequestUtils.getTrending(UrlsContants.TRENDING, null, new HomeRequestUtils.HomeRequestListener() {
             public void getRecommendModel(BaseRecommandModel recommandModel) {
@@ -105,6 +111,7 @@ public class HomeFragment extends BaseFragment {
                 }
                 mAdapter.removeLoadFrist();
                 mAdapter.addRecommandList(mRecommandModel.data.getList());
+                addAutoViewPager();
                 mAdapter.notifyDataSetChanged();
             }
 

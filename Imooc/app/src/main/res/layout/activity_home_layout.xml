@@ -12,8 +12,8 @@
         android:layout_alignParentBottom="true"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp">
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp">
 
         <RelativeLayout
             android:id="@+id/home_rl_home"
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/home_iv_home"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:text="@string/home_home"
                 android:textColor="@color/homTabLight" />
         </RelativeLayout>
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/home_iv_message"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:text="@string/home_message"
                 android:textColor="@color/homTabLight" />
         </RelativeLayout>
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/home_iv_me"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:text="@string/home_mine"
                 android:textColor="@color/homTabLight" />
         </RelativeLayout>

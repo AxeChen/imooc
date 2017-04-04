@@ -15,5 +15,6 @@
 
     <declare-styleable name="MultiImagesView">
         <attr name="lineCount" format="integer"/>
+        <attr name="imageMagin" format="dimension"/>
     </declare-styleable>
 </resources>

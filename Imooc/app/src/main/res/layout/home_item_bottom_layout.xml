@@ -9,12 +9,6 @@
         android:layout_height="40dp"
         android:layout_below="@+id/home_item_content_image">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/space_liner" />
-
         <TextView
             android:id="@+id/home_item_content_from"
             android:layout_width="wrap_content"

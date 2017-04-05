@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/ripple_with_selector"
     android:paddingTop="10dp">
 
     <include layout="@layout/home_item_top_layout" />
@@ -21,9 +22,9 @@
         android:id="@+id/home_item_multi_images"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
         android:layout_below="@+id/home_item_content_text"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
 
     <include layout="@layout/home_item_bottom_layout" />
 

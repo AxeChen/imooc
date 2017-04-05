@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/ripple_with_selector"
     android:orientation="vertical">
 
     <TextView
@@ -55,9 +56,9 @@
     <app.axe.imooc.customui.MultiImagesView
         android:id="@+id/multi_images_view"
         android:layout_width="match_parent"
-        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_height="wrap_content" />
+        android:layout_marginRight="10dp" />
 
 
 </LinearLayout>

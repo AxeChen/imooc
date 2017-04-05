@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import app.axe.imooc.R;
 import app.axe.imooc.adapter.home.HomeFragmentRecyclerViewAdapter;
+import app.axe.imooc.customui.recyclerview.RecyclerViewDivider;
 import app.axe.imooc.fragment.base.BaseFragment;
 import app.axe.imooc.module.recommend.BaseRecommandModel;
 import app.axe.imooc.module.recommend.RecommandHeadValue;
@@ -62,17 +63,18 @@ public class HomeFragment extends BaseFragment {
         initSwipeView();
     }
 
-    private void initScrollView(){
+    private void initScrollView() {
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     mImageLoaderManager.imageLoader.pause();
-                }else{
+                } else {
                     mImageLoaderManager.imageLoader.resume();
                 }
             }
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -94,10 +96,11 @@ public class HomeFragment extends BaseFragment {
     private void setAdapter() {
         mAdapter = new HomeFragmentRecyclerViewAdapter(mActivity, mImageLoaderManager);
         mRecyclerView.setLayoutManager(mLinerManager);
+        mRecyclerView.addItemDecoration(new RecyclerViewDivider(mActivity, LinearLayoutManager.VERTICAL));
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void addAutoViewPager(){
+    private void addAutoViewPager() {
         RecommandHeadValue headValue = mRecommandModel.data.getHead();
         mAdapter.addHeadView(headValue);
     }

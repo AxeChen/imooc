@@ -11,15 +11,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingBottom="4dp"
-        android:paddingTop="4dp">
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:id="@+id/home_rl_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@drawable/ripple_with_selector">
 
             <ImageView
                 android:id="@+id/home_iv_home"
@@ -44,7 +43,8 @@
             android:id="@+id/home_rl_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@drawable/ripple_with_selector">
 
             <ImageView
                 android:id="@+id/home_iv_message"
@@ -68,7 +68,8 @@
             android:id="@+id/home_rl_me"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@drawable/ripple_with_selector">
 
             <ImageView
                 android:id="@+id/home_iv_me"

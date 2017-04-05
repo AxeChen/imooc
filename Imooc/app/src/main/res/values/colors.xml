@@ -3,7 +3,7 @@
     <color name="colorPrimary">#34394B</color>
     <color name="colorPrimaryDark">#34394B</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="action_title">#FFFFFF</color>
+    <color name="colorWrite">#FFFFFF</color>
     <color name="liner_color">#D5DBD3</color>
     <color name="homTabLight">#B7BBBF</color>
     <color name="homTabSelectLight">#FF2D50</color>
@@ -11,4 +11,5 @@
     <color name="title_color">#2B333B</color>
     <color name="space_liner">#F3F5F7</color>
     <color name="text_color">#2B333B</color>
+    <color name="colorCommonBG">#EEEEEE</color>
 </resources>

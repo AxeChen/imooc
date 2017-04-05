@@ -164,6 +164,12 @@ public class HomeFragmentRecyclerViewAdapter extends BaseRecyclerViewAdapter {
             zan = (TextView) itemView.findViewById(R.id.home_item_content_tv_zan);
             ivzan = (ImageView) itemView.findViewById(R.id.home_item_content_iv_zan);
             text = (TextView) itemView.findViewById(R.id.home_item_content_text);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
     }
 
@@ -186,6 +192,13 @@ public class HomeFragmentRecyclerViewAdapter extends BaseRecyclerViewAdapter {
             zan = (TextView) itemView.findViewById(R.id.home_item_content_tv_zan);
             ivzan = (ImageView) itemView.findViewById(R.id.home_item_content_iv_zan);
             text = (TextView) itemView.findViewById(R.id.home_item_content_text);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
     }
 
@@ -196,6 +209,12 @@ public class HomeFragmentRecyclerViewAdapter extends BaseRecyclerViewAdapter {
         public HomeContentViewPagerViewHolder(View itemView) {
             super(itemView);
             mViewPager = (ViewPager) itemView.findViewById(R.id.home_item_viewpager);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
     }
 

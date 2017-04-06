@@ -25,10 +25,15 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
 **轮播图片采用三方开源库：AutoScrollViewPager和CirclePageIndicator。 ** </br>
 
 **分割线参用自定义RecyclerView.ItemDecoration。**  </br>
-
+http://www.jianshu.com/p/13b6d1237e69
 
 ### 3、点击反馈，Android5.0后的点击波浪纹效果。 </br>
+http://www.jianshu.com/p/7d2a8a5836e0
 
 ### 4、优化  </br>
-
+减少重绘
+![overdraw](https://cloud.githubusercontent.com/assets/19148112/24737072/a077d514-1abe-11e7-9595-dcdfa5bd9fc1.png)
+项目还在持续开发优化中。
 ### 5、服务器数据：暂时采用Charles代理请求json。  </br>
+### 6、项目还在持续开发中。</br>
+还在持续学习开发中。不间断更新代码。

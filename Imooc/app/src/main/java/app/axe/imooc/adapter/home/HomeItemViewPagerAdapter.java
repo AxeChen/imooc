@@ -5,13 +5,12 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import app.axe.imooc.R;
-import app.axe.imooc.customui.MultiImagesView;
+import app.axe.imooc.customui.home.MultiImagesView;
 import app.axe.imooc.module.recommend.RecommandBodyValue;
 
 /**

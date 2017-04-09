@@ -1,5 +1,6 @@
 package app.axe.imooc.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -22,6 +23,7 @@ import app.axe.imooc.adapter.home.HomeViewPagerAdapter;
 import app.axe.imooc.fragment.home.HomeFragment;
 import app.axe.imooc.fragment.home.MessageFragment;
 import app.axe.imooc.fragment.home.MineFragment;
+import app.axe.imooc.zxing.app.CaptureActivity;
 
 /**
  * 创建首页所有的Fragment
@@ -182,6 +184,8 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
         switch (item.getItemId()) {
             case MENU_SEARCH_ID:
                 Toast.makeText(getApplicationContext(), "go to seach", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(HomeActivity.this, CaptureActivity.class);
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);

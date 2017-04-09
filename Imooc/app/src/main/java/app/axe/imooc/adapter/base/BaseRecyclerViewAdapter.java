@@ -12,7 +12,7 @@ import java.util.List;
 import app.axe.imooc.R;
 
 /**
- * Created by Administrator on 2017/3/28.
+ * Created by Chen on 2017/3/28.
  */
 
 public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
@@ -20,7 +20,6 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
     private static final int VIEW_TYPE_NODATA = 0;
     private static final int VIEW_TYPE_FIRST_LOADING = 1;
     private static final int VIEW_TYPE_NEXT_LOADING = 2;
-
 
     private List<Object> mItems;
     protected LayoutInflater mInflater;

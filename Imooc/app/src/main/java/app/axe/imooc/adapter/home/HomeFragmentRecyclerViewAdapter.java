@@ -15,7 +15,7 @@ import java.util.List;
 
 import app.axe.imooc.R;
 import app.axe.imooc.adapter.base.BaseRecyclerViewAdapter;
-import app.axe.imooc.customui.MultiImagesView;
+import app.axe.imooc.customui.home.MultiImagesView;
 import app.axe.imooc.customui.viewpager.AutoScrollViewPager;
 import app.axe.imooc.customui.viewpager.CirclePageIndicator;
 import app.axe.imooc.module.recommend.RecommandBodyValue;

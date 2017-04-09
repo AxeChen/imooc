@@ -44,7 +44,7 @@
             android:textColor="@color/text_color"
             android:textSize="18sp" />
 
-        <app.axe.imooc.customui.MultiImagesView
+        <app.axe.imooc.customui.home.MultiImagesView
             android:id="@+id/home_multi_images"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

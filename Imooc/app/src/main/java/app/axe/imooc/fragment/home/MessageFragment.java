@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.axe.imooc.R;
-import app.axe.imooc.customui.MultiImagesView;
+import app.axe.imooc.customui.home.MultiImagesView;
 import app.axe.imooc.fragment.base.BaseFragment;
 
 /**

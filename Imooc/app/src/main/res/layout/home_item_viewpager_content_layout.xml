@@ -53,7 +53,7 @@
 
     </RelativeLayout>
 
-    <app.axe.imooc.customui.MultiImagesView
+    <app.axe.imooc.customui.home.MultiImagesView
         android:id="@+id/multi_images_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

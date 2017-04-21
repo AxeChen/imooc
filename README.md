@@ -36,8 +36,8 @@ http://www.jianshu.com/p/7d2a8a5836e0
 项目还在持续开发优化中。  </br>
 ### 5、服务器数据：暂时采用Charles代理请求json。  </br>
 ### 6、添加二维码扫描功能。 </br>
-依赖google官方框架：Zxing。
-https://github.com/zxing/zxing
+依赖google官方框架：Zxing。  </br>
+https://github.com/zxing/zxing  </br>
 1、逻辑建立，扫描http://www.imooc.com 的scheme和host  </br>
 2、进入商品界面和人员详情界面。  </br>
 ### 6、项目还在持续开发中。</br>

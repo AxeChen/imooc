@@ -35,5 +35,10 @@ http://www.jianshu.com/p/7d2a8a5836e0
 ![overdraw](https://cloud.githubusercontent.com/assets/19148112/24737072/a077d514-1abe-11e7-9595-dcdfa5bd9fc1.png)  </br>
 项目还在持续开发优化中。  </br>
 ### 5、服务器数据：暂时采用Charles代理请求json。  </br>
+### 6、添加二维码扫描功能。 </br>
+依赖google官方框架：Zxing。
+https://github.com/zxing/zxing
+1、逻辑建立，扫描http://www.imooc.com 的scheme和host
+2、进入商品界面和人员详情界面。
 ### 6、项目还在持续开发中。</br>
 还在持续学习开发中。不间断更新代码。

@@ -3,8 +3,9 @@ package app.axe.imooc.module;
 import java.io.Serializable;
 
 /**
- * Created by Chen on 2017/3/30.
- * 模型基类
+ * @description 实体基类
+ * @author fangyan
+ * @date 2015年8月1日
  */
 public class BaseModel implements Serializable {
 

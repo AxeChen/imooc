@@ -1,19 +1,22 @@
 package app.axe.support.okhttp.listener;
 
-/**
- * Created by Administrator on 2017/3/24.
- */
-
+/**********************************************************
+ * @文件名称：DisposeDataListener.java
+ * @文件作者：renzhiqiang
+ * @创建时间：2015年8月19日 上午11:01:13
+ * @文件描述：业务逻辑层真正处理的地方，包括java层异常和业务层异常
+ * @修改历史：2015年8月19日创建初始版本
+ **********************************************************/
 public interface DisposeDataListener {
-    /**
-     * 请求成功回调事件处理,如果请求成功会返回一个JsonObject对象
-     * @param responseJsonObj
-     */
-    public void onSuccess(Object responseJsonObj);
 
-    /**
-     * 请求失败回调事件处理
-     * @param reasonObj
-     */
-    public void onFailure(Object reasonObj);
+	/**
+	 * 请求成功回调事件处理
+	 */
+	public void onSuccess(Object responseObj);
+
+	/**
+	 * 请求失败回调事件处理
+	 */
+	public void onFailure(Object reasonObj);
+
 }

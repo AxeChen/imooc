@@ -11,13 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import app.axe.imooc.R;
-import app.axe.imooc.adapter.home.HomeFragmentRecyclerViewAdapter;
+import app.axe.imooc.adapter.home.HomeRecommendAdapter;
 import app.axe.imooc.customui.recyclerview.RecyclerViewDivider;
 import app.axe.imooc.fragment.base.BaseFragment;
-import app.axe.imooc.module.recommend.BaseRecommandModel;
-import app.axe.imooc.module.recommend.RecommandHeadValue;
-import app.axe.imooc.network.UrlsContants;
-import app.axe.imooc.network.home.HomeRequestUtils;
+import app.axe.imooc.module.recommand.BaseRecommandModel;
+import app.axe.imooc.module.recommand.RecommandHeadValue;
+import app.axe.imooc.network.RequestCenter;
+import app.axe.support.okhttp.listener.DisposeDataListener;
 import app.axe.support.universalimageloader.ImageLoaderManager;
 
 /**
@@ -30,7 +30,7 @@ public class HomeFragment extends BaseFragment {
     private View mView;
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefresh;
-    private HomeFragmentRecyclerViewAdapter mAdapter;
+    private HomeRecommendAdapter mAdapter;
     private LinearLayoutManager mLinerManager;
 
     private BaseRecommandModel mRecommandModel;
@@ -94,33 +94,50 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void setAdapter() {
-        mAdapter = new HomeFragmentRecyclerViewAdapter(mActivity, mImageLoaderManager);
+        mAdapter = new HomeRecommendAdapter(mActivity, mImageLoaderManager);
         mRecyclerView.setLayoutManager(mLinerManager);
         mRecyclerView.addItemDecoration(new RecyclerViewDivider(mActivity, LinearLayoutManager.VERTICAL));
         mRecyclerView.setAdapter(mAdapter);
     }
 
     private void addAutoViewPager() {
-        RecommandHeadValue headValue = mRecommandModel.data.getHead();
+        RecommandHeadValue headValue = mRecommandModel.data.head;
         mAdapter.addHeadView(headValue);
     }
 
     private void loadData() {
-        HomeRequestUtils.getTrending(UrlsContants.TRENDING, null, new HomeRequestUtils.HomeRequestListener() {
-            public void getRecommendModel(BaseRecommandModel recommandModel) {
-                //展示数据
-                if (recommandModel != null) {
-                    mRecommandModel = recommandModel;
-                }
+//        HomeRequestUtils.getTrending(UrlsContants.TRENDING, null, new HomeRequestUtils.HomeRequestListener() {
+//            public void getRecommendModel(BaseRecommandModel recommandModel) {
+//                //展示数据
+//                if (recommandModel != null) {
+//                    mRecommandModel = recommandModel;
+//                }
+//                mAdapter.removeLoadFrist();
+//                mAdapter.addRecommandList(mRecommandModel.data.getList());
+//                addAutoViewPager();
+//                mAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onFailure() {
+//
+//            }
+//        });
+
+        RequestCenter.requestRecommandData(new DisposeDataListener() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                mRecommandModel = (BaseRecommandModel) responseObj;
+                //更新UI
                 mAdapter.removeLoadFrist();
-                mAdapter.addRecommandList(mRecommandModel.data.getList());
+                mAdapter.addRecommandList(mRecommandModel.data.list);
                 addAutoViewPager();
                 mAdapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure() {
-
+            public void onFailure(Object reasonObj) {
+                //显示请求失败View
             }
         });
     }

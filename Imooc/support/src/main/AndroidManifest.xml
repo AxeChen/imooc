@@ -2,10 +2,13 @@
 
     package="app.axe.support">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <application android:allowBackup="true" android:label="@string/app_name"
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
         android:supportsRtl="true">
 
+        <activity android:name=".activity.AdBrowserActivity" />
     </application>
 
 </manifest>

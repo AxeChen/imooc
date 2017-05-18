@@ -1,15 +1,29 @@
 package app.axe.support.okhttp.listener;
 
 /**
- * Created by Administrator on 2017/3/24.
+ * @author vision
  *
  */
+public class DisposeDataHandle
+{
+	public DisposeDataListener mListener = null;
+	public Class<?> mClass = null;
+	public String mSource = null;
 
-public class DisposeDataHandle {
+	public DisposeDataHandle(DisposeDataListener listener)
+	{
+		this.mListener = listener;
+	}
 
-    public DisposeDataListener mListener;
+	public DisposeDataHandle(DisposeDataListener listener, Class<?> clazz)
+	{
+		this.mListener = listener;
+		this.mClass = clazz;
+	}
 
-    public DisposeDataHandle(DisposeDataListener mListener) {
-        this.mListener = mListener;
-    }
+	public DisposeDataHandle(DisposeDataListener listener, String source)
+	{
+		this.mListener = listener;
+		this.mSource = source;
+	}
 }

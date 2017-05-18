@@ -1,9 +1,9 @@
 package app.axe.imooc.utils;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import app.axe.imooc.module.recommend.RecommandBodyValue;
+import app.axe.imooc.module.recommand.RecommandBodyValue;
+
 
 /**
  * Created by Administrator on 2017/4/2.

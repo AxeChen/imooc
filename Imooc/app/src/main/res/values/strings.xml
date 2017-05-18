@@ -1,12 +1,18 @@
 <resources>
     <string name="app_name">Imooc</string>
     <string name="action_settings">Settings</string>
+
+
+    <!-- 主界面 -->
     <string name="home_home">Home</string>
     <string name="home_message">Message</string>
     <string name="home_mine">Me</string>
     <string name="search">Search</string>
     <string name="loading">Loading</string>
-    <string name="recommand_object">Recommand Object</string>
+    <string name="recommand_object">今日推荐</string>
+    <string name="recommand_try_change">换一换</string>
+
+
     <!-- QR_Code -->
     <string name="button_ok">OK</string>
     <string name="msg_camera_framework_bug">Sorry, the Android camera encountered a problem. You may need to restart the

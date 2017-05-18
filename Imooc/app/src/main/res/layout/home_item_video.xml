@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_with_selector"
+    android:orientation="vertical"
+    android:paddingTop="10dp">
+
+    <include
+        android:id="@+id/home_item_content_top_view"
+        layout="@layout/home_item_top_layout" />
+
+    <TextView
+        android:id="@+id/home_item_content_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/text_color"
+        android:textSize="14sp" />
+
+    <app.axe.support.widget.CustomVideoView
+        android:id="@+id/cvVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include layout="@layout/home_item_bottom_layout" />
+</LinearLayout>

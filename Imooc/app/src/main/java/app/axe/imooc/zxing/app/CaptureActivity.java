@@ -16,6 +16,7 @@
 
 package app.axe.imooc.zxing.app;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -201,11 +202,16 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
                 }
                 isFlash = !isFlash;
             } else if (id == R.id.photo_btn) {
-                // 打开手机中的相册
-                Intent innerIntent = new Intent(Intent.ACTION_GET_CONTENT); // "android.intent.action.GET_CONTENT"
-                innerIntent.setType("image/*");
-                Intent wrapperIntent = Intent.createChooser(innerIntent, "选择二维码图片");
-                startActivityForResult(wrapperIntent, REQUEST_CODE);
+                if (ContextCompat.checkSelfPermission(CaptureActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(CaptureActivity.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_XIANGCE);
+                } else {
+                    // 打开手机中的相册
+                    Intent innerIntent = new Intent(Intent.ACTION_GET_CONTENT); // "android.intent.action.GET_CONTENT"
+                    innerIntent.setType("image/*");
+                    Intent wrapperIntent = Intent.createChooser(innerIntent, "选择二维码图片");
+                    startActivityForResult(wrapperIntent, REQUEST_CODE);
+                }
+
             } else if (id == R.id.qrcode_btn) {
                 // 跳转到生成二维码页面
                 Bitmap b = createQRCode();
@@ -219,6 +225,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     };
 
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 555;
+    private static final int MY_PERMISSIONS_REQUEST_XIANGCE = 556;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -228,6 +235,15 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
                 //用户自己设置吧
             }else{
                 initCamera(surfaceHolder);
+            }
+        }else if(requestCode == MY_PERMISSIONS_REQUEST_XIANGCE){
+            if (ContextCompat.checkSelfPermission(CaptureActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            } else {
+                // 打开手机中的相册
+                Intent innerIntent = new Intent(Intent.ACTION_GET_CONTENT); // "android.intent.action.GET_CONTENT"
+                innerIntent.setType("image/*");
+                Intent wrapperIntent = Intent.createChooser(innerIntent, "选择二维码图片");
+                startActivityForResult(wrapperIntent, REQUEST_CODE);
             }
         }
     }
@@ -586,7 +602,6 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
             BinaryBitmap bitmap1 = new BinaryBitmap(new HybridBinarizer(source));
             QRCodeReader reader = new QRCodeReader();
             return reader.decode(bitmap1, hints);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

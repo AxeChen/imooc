@@ -1,4 +1,4 @@
-package app.axe.imooc.fragment.home;
+package app.axe.imooc.ui.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import app.axe.imooc.R;
 import app.axe.imooc.adapter.home.HomeRecommendAdapter;
 import app.axe.imooc.customui.recyclerview.RecyclerViewDivider;
-import app.axe.imooc.fragment.base.BaseFragment;
+import app.axe.imooc.ui.base.BaseFragment;
 import app.axe.imooc.module.recommand.BaseRecommandModel;
 import app.axe.imooc.module.recommand.RecommandHeadValue;
 import app.axe.imooc.network.RequestCenter;

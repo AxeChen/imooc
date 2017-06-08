@@ -11,6 +11,7 @@ import app.axe.support.activity.AdBrowserActivity;
 import app.axe.support.constant.SDKConstant;
 import app.axe.support.report.ReportManager;
 import app.axe.support.utils.Utils;
+import app.axe.support.widget.CustomVideoView.ADVideoPlayerListener;
 import app.axe.support.widget.CustomVideoView;
 import app.axe.support.widget.VideoFullDialog;
 
@@ -20,7 +21,7 @@ import app.axe.support.widget.VideoFullDialog;
  * @function: 广告业务逻辑层
  * @date: 16/6/20
  */
-public class VideoAdSlot implements CustomVideoView.ADVideoPlayerListener {
+public class VideoAdSlot implements ADVideoPlayerListener {
 
     private Context mContext;
     /**

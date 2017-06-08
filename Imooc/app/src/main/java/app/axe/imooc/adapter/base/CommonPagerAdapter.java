@@ -1,4 +1,4 @@
-package app.axe.imooc.adapter.home;
+package app.axe.imooc.adapter.base;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,14 +7,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/3/22 0022.
+ * Created by Chen on 2017/3/22 0022.
  */
 
-public class HomeViewPagerAdapter extends FragmentPagerAdapter {
+public class CommonPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> fragments;
 
-    public HomeViewPagerAdapter(FragmentManager fm,List<Fragment> fragments) {
+    public CommonPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
         this.fragments = fragments;
     }

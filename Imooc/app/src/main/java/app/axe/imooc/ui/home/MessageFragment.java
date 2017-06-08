@@ -1,4 +1,4 @@
-package app.axe.imooc.fragment.home;
+package app.axe.imooc.ui.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +12,7 @@ import java.util.List;
 
 import app.axe.imooc.R;
 import app.axe.imooc.customui.home.MultiImagesView;
-import app.axe.imooc.fragment.base.BaseFragment;
+import app.axe.imooc.ui.base.BaseFragment;
 
 /**
  * Created by Administrator on 2017/3/22 0022.

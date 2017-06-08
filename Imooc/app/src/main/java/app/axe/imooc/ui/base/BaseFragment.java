@@ -1,4 +1,4 @@
-package app.axe.imooc.fragment.base;
+package app.axe.imooc.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

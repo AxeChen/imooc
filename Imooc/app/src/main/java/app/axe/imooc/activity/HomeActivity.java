@@ -19,10 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.axe.imooc.R;
-import app.axe.imooc.adapter.home.HomeViewPagerAdapter;
-import app.axe.imooc.fragment.home.HomeFragment;
-import app.axe.imooc.fragment.home.MessageFragment;
-import app.axe.imooc.fragment.home.MineFragment;
+import app.axe.imooc.adapter.base.CommonPagerAdapter;
+import app.axe.imooc.ui.home.HomeFragment;
+import app.axe.imooc.ui.home.MessageFragment;
+import app.axe.imooc.ui.home.MineFragment;
 import app.axe.imooc.zxing.app.CaptureActivity;
 
 /**
@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
     private MessageFragment mMessageFragment;
     private MineFragment mMineFragment;
 
-    private HomeViewPagerAdapter mAdapter;
+    private CommonPagerAdapter mAdapter;
 
     /**
      * 退出时页面的id
@@ -119,7 +119,7 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     private void initAdapter() {
-        mAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(), mFragments);
+        mAdapter = new CommonPagerAdapter(getSupportFragmentManager(), mFragments);
         mViewPager.setAdapter(mAdapter);
     }
 

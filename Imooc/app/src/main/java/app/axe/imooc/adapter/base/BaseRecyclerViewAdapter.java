@@ -32,16 +32,16 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
     private int loadnextview = R.layout.common_adapter_load_next_layout;
     private int loadfirstview = R.layout.common_adapter_first_load_layout;
 
-    public BaseRecyclerViewAdapter(Context context){
-        mContext = context.getApplicationContext();
+    public BaseRecyclerViewAdapter(Context context) {
+        mContext = context;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getItemViewType(int position) {
         Object object = getItems().get(position);
-        if(object != null){
-            if(object instanceof Integer){
+        if (object != null) {
+            if (object instanceof Integer) {
                 return (int) object;
             }
         }
@@ -50,13 +50,13 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == VIEW_TYPE_NODATA){
-            return new CommonViewHolder(mInflater.inflate(nodataview,parent,false));
-        }else if(viewType == VIEW_TYPE_NEXT_LOADING){
-            return new CommonViewHolder(mInflater.inflate(loadnextview,parent,false));
-        }else if(viewType == VIEW_TYPE_FIRST_LOADING){
-            return new CommonViewHolder(mInflater.inflate(loadfirstview,parent,false));
-        }else {
+        if (viewType == VIEW_TYPE_NODATA) {
+            return new CommonViewHolder(mInflater.inflate(nodataview, parent, false));
+        } else if (viewType == VIEW_TYPE_NEXT_LOADING) {
+            return new CommonViewHolder(mInflater.inflate(loadnextview, parent, false));
+        } else if (viewType == VIEW_TYPE_FIRST_LOADING) {
+            return new CommonViewHolder(mInflater.inflate(loadfirstview, parent, false));
+        } else {
             return new RecyclerView.ViewHolder(new View(mContext)) {
             };
         }
@@ -74,10 +74,11 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
 
     /**
      * 获取数据集合
+     *
      * @return
      */
-    public List<Object> getItems(){
-        if(mItems == null){
+    public List<Object> getItems() {
+        if (mItems == null) {
             mItems = new ArrayList<>();
         }
         return mItems;
@@ -85,20 +86,22 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
 
     /**
      * 添加一个集合的数据
+     *
      * @param objects
      */
-    public void addItems(List<Object> objects){
-        for(Object object:objects){
+    public void addItems(List<Object> objects) {
+        for (Object object : objects) {
             getItems().add(object);
         }
     }
 
     /**
      * 添加单个数据
+     *
      * @param object
      */
-    public void addItem(Object object){
-        if(object == null){
+    public void addItem(Object object) {
+        if (object == null) {
             return;
         }
         getItems().add(object);
@@ -106,35 +109,41 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
 
     /**
      * 添加单个数据
+     *
      * @param object
      * @param position
      */
-    public void addItem(Object object,int position){
-        if(object == null){
+    public void addItem(Object object, int position) {
+        if (object == null) {
             return;
         }
-        getItems().add(position,object);
+        getItems().add(position, object);
     }
 
     /**
      * 删除一个数据
+     *
      * @param position
      */
-    public void deleteItem(int position){
-        if(getItems().get(position)!=null){
+    public void deleteItem(int position) {
+        if (getItems().get(position) != null) {
             getItems().remove(position);
         }
         notifyDataSetChanged();
     }
 
-    /**移除第一次加载的loading**/
-    public void removeLoadFrist(){
+    /**
+     * 移除第一次加载的loading
+     **/
+    public void removeLoadFrist() {
         getItems().clear();
         notifyDataSetChanged();
     }
 
-    /**移除加载下一次的loading**/
-    public void removeLoadNext(){
+    /**
+     * 移除加载下一次的loading
+     **/
+    public void removeLoadNext() {
         getItems().remove(VIEW_TYPE_NEXT_LOADING);
         notifyDataSetChanged();
     }
@@ -142,19 +151,23 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
     /**
      * 清除没有数据的界面
      */
-    public void removeNodataView(){
+    public void removeNodataView() {
         getItems().clear();
         notifyDataSetChanged();
     }
 
-    /**添加下一页Loading**/
-    public void addLoadNext(){
+    /**
+     * 添加下一页Loading
+     **/
+    public void addLoadNext() {
         getItems().add(VIEW_TYPE_NEXT_LOADING);
         notifyDataSetChanged();
     }
 
-    /**添加第一次加载loading**/
-    public void addLoadFrist(){
+    /**
+     * 添加第一次加载loading
+     **/
+    public void addLoadFrist() {
         getItems().add(VIEW_TYPE_FIRST_LOADING);
         notifyDataSetChanged();
     }
@@ -162,7 +175,7 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
     /**
      * 添加没有数据的界面
      */
-    public void addNoDataView(){
+    public void addNoDataView() {
         getItems().clear();
         getItems().add(VIEW_TYPE_NODATA);
         notifyDataSetChanged();
@@ -170,32 +183,33 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
 
     /**
      * 设置三个公共view展示的逻辑
+     *
      * @param nodataview
      * @param loadfirstview
      * @param loadnextview
      */
-    public void setCommonView(int nodataview,int loadfirstview,int loadnextview){
+    public void setCommonView(int nodataview, int loadfirstview, int loadnextview) {
         setLoadfirstview(loadfirstview);
         setLoadnextview(loadnextview);
         setNodataview(nodataview);
     }
 
     public void setNodataview(int nodataview) {
-        if(nodataview == 0){
+        if (nodataview == 0) {
             return;
         }
         this.nodataview = nodataview;
     }
 
     public void setLoadnextview(int loadnextview) {
-        if(loadnextview == 0){
+        if (loadnextview == 0) {
             return;
         }
         this.loadnextview = loadnextview;
     }
 
     public void setLoadfirstview(int loadfirstview) {
-        if(loadfirstview == 0){
+        if (loadfirstview == 0) {
             return;
         }
         this.loadfirstview = loadfirstview;
@@ -204,7 +218,7 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter {
     /**
      * 公用UI的viewholder
      */
-    public class CommonViewHolder extends RecyclerView.ViewHolder{
+    public class CommonViewHolder extends RecyclerView.ViewHolder {
 
         public CommonViewHolder(View itemView) {
             super(itemView);

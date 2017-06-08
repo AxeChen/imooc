@@ -1,6 +1,7 @@
 package app.axe.imooc.adapter.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.axe.imooc.R;
+import app.axe.imooc.activity.ProductDetailActivity;
 import app.axe.imooc.adapter.base.BaseRecyclerViewAdapter;
 import app.axe.imooc.customui.home.MultiImagesView;
 import app.axe.imooc.customui.viewpager.AutoScrollViewPager;
@@ -190,6 +192,17 @@ public class HomeRecommendAdapter extends BaseRecyclerViewAdapter {
                 @Override
                 public void onClick(View v) {
 
+                }
+            });
+
+            contentImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position >= 0) {
+                        Intent intent = new Intent(mContext, ProductDetailActivity.class);
+                        mContext.startActivity(intent);
+                    }
                 }
             });
         }

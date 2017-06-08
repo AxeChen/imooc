@@ -39,6 +39,8 @@ public class HttpConstants {
      */
     public static String COURSE_DETAIL = ROOT_URL + "/product/course_detail.php";
 
+    public static String PRODUCT_DETAIL = ROOT_URL + "/product/detail.php";
+
 }
 
 
